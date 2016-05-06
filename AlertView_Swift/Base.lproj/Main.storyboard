@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AlertView_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,42 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iig-wE-r1x">
+                                <rect key="frame" x="229" y="81" width="142" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="142" id="6em-71-Chy"/>
+                                    <constraint firstAttribute="height" constant="65" id="tlQ-N0-wff"/>
+                                </constraints>
+                                <state key="normal" title="show alertView"/>
+                                <connections>
+                                    <action selector="showAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="56n-kp-5bj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9n9-RN-KQb">
+                                <rect key="frame" x="229" y="180" width="142" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="142" id="icX-Mw-09j"/>
+                                    <constraint firstAttribute="height" constant="65" id="yqs-4D-QaT"/>
+                                </constraints>
+                                <state key="normal" title="show actionSheet"/>
+                                <connections>
+                                    <action selector="showSheetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eCo-Xp-Hpk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Iig-wE-r1x" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="61" id="9PH-AS-Qvy"/>
+                            <constraint firstItem="9n9-RN-KQb" firstAttribute="top" secondItem="Iig-wE-r1x" secondAttribute="bottom" constant="34" id="UP8-oO-Pyn"/>
+                            <constraint firstItem="Iig-wE-r1x" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VCw-Qf-JL3"/>
+                            <constraint firstItem="9n9-RN-KQb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XOd-rh-61Y"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="340" y="352"/>
         </scene>
     </scenes>
 </document>

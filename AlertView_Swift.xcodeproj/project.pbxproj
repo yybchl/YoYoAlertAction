@@ -14,6 +14,8 @@
 		FB751A531CDC35F900E8651D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB751A511CDC35F900E8651D /* LaunchScreen.storyboard */; };
 		FB751A5E1CDC35F900E8651D /* AlertView_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB751A5D1CDC35F900E8651D /* AlertView_SwiftTests.swift */; };
 		FB751A691CDC35F900E8651D /* AlertView_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB751A681CDC35F900E8651D /* AlertView_SwiftUITests.swift */; };
+		FB751A781CDC366D00E8651D /* YoYoAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB751A771CDC366D00E8651D /* YoYoAlertView.swift */; };
+		FB751A7A1CDC47C600E8651D /* YoYoActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB751A791CDC47C600E8651D /* YoYoActionSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		FB751A641CDC35F900E8651D /* AlertView_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlertView_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB751A681CDC35F900E8651D /* AlertView_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView_SwiftUITests.swift; sourceTree = "<group>"; };
 		FB751A6A1CDC35F900E8651D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB751A771CDC366D00E8651D /* YoYoAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoYoAlertView.swift; sourceTree = "<group>"; };
+		FB751A791CDC47C600E8651D /* YoYoActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoYoActionSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,7 @@
 		FB751A471CDC35F900E8651D /* AlertView_Swift */ = {
 			isa = PBXGroup;
 			children = (
+				FB751A761CDC361600E8651D /* AlertView */,
 				FB751A481CDC35F900E8651D /* AppDelegate.swift */,
 				FB751A4A1CDC35F900E8651D /* ViewController.swift */,
 				FB751A4C1CDC35F900E8651D /* Main.storyboard */,
@@ -123,6 +128,15 @@
 				FB751A6A1CDC35F900E8651D /* Info.plist */,
 			);
 			path = AlertView_SwiftUITests;
+			sourceTree = "<group>";
+		};
+		FB751A761CDC361600E8651D /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				FB751A771CDC366D00E8651D /* YoYoAlertView.swift */,
+				FB751A791CDC47C600E8651D /* YoYoActionSheet.swift */,
+			);
+			path = AlertView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +272,8 @@
 			files = (
 				FB751A4B1CDC35F900E8651D /* ViewController.swift in Sources */,
 				FB751A491CDC35F900E8651D /* AppDelegate.swift in Sources */,
+				FB751A781CDC366D00E8651D /* YoYoAlertView.swift in Sources */,
+				FB751A7A1CDC47C600E8651D /* YoYoActionSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
