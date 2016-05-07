@@ -10,6 +10,14 @@ import UIKit
 
 class YoYoActionSheet: UIView {
     
+    typealias clickSheetClosure = (index: Int) -> Void //声明闭包，点击按钮传值
+    //把申明的闭包设置成属性
+    var clickClosure: clickSheetClosure?
+    //为闭包设置调用函数
+    func clickIndexClosure(closure:clickSheetClosure?){
+        //将函数指针赋值给myClosure闭包
+        clickClosure = closure
+    }
     let screen_width = UIScreen.mainScreen().bounds.size.width
     let screen_height = UIScreen.mainScreen().bounds.size.height
     let backGroundView = UIView() //背景视图
@@ -28,19 +36,20 @@ class YoYoActionSheet: UIView {
         self.addGestureRecognizer(tap)
         //选择视图
         var num = 0
-        if title != nil && title != "" {
+        if title != nil && title != "" { //是否添加标题
             num += 1
             //加标题
-            let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: screen_width, height: 45))
+            let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: screen_width - 12, height: 50))
             titleLabel.textAlignment = .Center
             titleLabel.text = title
-            titleLabel.font = UIFont.systemFontOfSize(18)
+            titleLabel.textColor = UIColor.grayColor()
+            titleLabel.font = UIFont.systemFontOfSize(15)
             backGroundView.addSubview(titleLabel)
         }
         if cancelButtonTitle != nil && cancelButtonTitle != "" {
             num += 1
         }
-        let height = 45 * (buttonTitles!.count + num)
+        let height = 50 * (buttonTitles!.count + num)
         backGroundView.frame = CGRect(x: 6, y: screen_height, width: screen_width - 12, height: CGFloat(height))
         backGroundView.backgroundColor = UIColor.whiteColor()
         backGroundView.layer.cornerRadius = 4
@@ -51,28 +60,19 @@ class YoYoActionSheet: UIView {
         
         //添加按键
         for index in 0..<buttonTitles!.count {
-            let btn = UIButton(frame: CGRect(x: 0, y: 45 * CGFloat(index + 1), width: screen_width - 12, height: 45))
+            let btn = SheetButton(frame: CGRect(x: 0, y: 50 * CGFloat(index + (title == nil || title == "" ? 0 : 1)), width: screen_width - 12, height: 50))
             btn.addTarget(self, action:  #selector(self.actionSheetButton(_:)), forControlEvents: .TouchUpInside)
             btn.addTarget(self, action:  #selector(self.actionSheetDowmAction(_:)), forControlEvents: .TouchDown)
-            btn.tag = index + 2
+            btn.tag = index + 1
             btn.setTitle(buttonTitles![index], forState: .Normal)
-            if index == 0 {
-                btn.setTitleColor(UIColor.orangeColor(), forState: .Normal)
-            }else {
-                btn.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            }
+            btn.setTitleColor(UIColor.grayColor(), forState: .Normal)
             backGroundView.addSubview(btn)
-            //加线
-            let line = UIView(frame: CGRect(x: 0, y: 44, width: btn.frame.size.width, height: 1))
-            line.backgroundColor = UIColor.groupTableViewBackgroundColor()
-            btn.addSubview(line)
-            
         }
         // cancelButton
-        if cancelButtonTitle != nil && cancelButtonTitle != "" {
-            let cancelBtn = UIButton(frame: CGRectMake(8, CGFloat(height) - 42, screen_width - 28, 39))
+        if cancelButtonTitle != nil && cancelButtonTitle != "" { //是否添加取消按钮
+            let cancelBtn = UIButton(frame: CGRectMake(8, CGFloat(height) - 44, screen_width - 28, 38))
             cancelBtn.addTarget(self, action: #selector(self.actionSheetButton(_:)), forControlEvents: .TouchUpInside)
-            cancelBtn.tag = 1
+            cancelBtn.addTarget(self, action:  #selector(self.actionSheetDowmAction(_:)), forControlEvents: .TouchDown)
             cancelBtn.layer.cornerRadius = 3
             cancelBtn.clipsToBounds = true
             cancelBtn.layer.borderColor = UIColor.groupTableViewBackgroundColor().CGColor
@@ -86,11 +86,18 @@ class YoYoActionSheet: UIView {
     }
     
     func actionSheetButton(sender:UIButton) {
+        if (clickClosure != nil) {
+            clickClosure!(index: sender.tag)
+        }
         dismiss()
     }
     
     func actionSheetDowmAction(sender:UIButton) {
-        sender.setTitleColor(UIColor.orangeColor(), forState: .Normal)
+        if sender.tag == 0 {
+            sender.alpha = 0.6
+            return
+        }
+        sender.backgroundColor = UIColor.orangeColor()
     }
     
     func removeWindowsView(thetap:UITapGestureRecognizer) {
@@ -124,5 +131,20 @@ class YoYoActionSheet: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+}
+class SheetButton: UIButton {
+    override func drawRect(rect: CGRect) {
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetLineCap(context, CGLineCap.Round
+        );
+        CGContextSetLineWidth(context, 0.5);  //线宽
+        CGContextSetAllowsAntialiasing(context, true);
+        CGContextSetRGBStrokeColor(context, 220.0 / 255.0, 220.0 / 255.0, 220.0 / 255.0, 1.0);  //线的颜色
+        CGContextBeginPath(context);
+        
+        CGContextMoveToPoint(context, 0, self.frame.size.height - 0.5);  //起点坐标
+        CGContextAddLineToPoint(context, self.frame.size.width, self.frame.size.height - 0.5);   //终点坐标
+        
+        CGContextStrokePath(context);
+    }
 }

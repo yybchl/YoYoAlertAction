@@ -10,11 +10,11 @@ import UIKit
 
 class YoYoAlertView: UIView {
 
-    typealias clickBtnClosure = (index: Int) -> Void //声明闭包，点击按钮传值
+    typealias clickAlertClosure = (index: Int) -> Void //声明闭包，点击按钮传值
     //把申明的闭包设置成属性
-    var clickClosure: clickBtnClosure?
+    var clickClosure: clickAlertClosure?
     //为闭包设置调用函数
-    func clickIndexClosure(closure:clickBtnClosure?){
+    func clickIndexClosure(closure:clickAlertClosure?){
         //将函数指针赋值给myClosure闭包
         clickClosure = closure
     }
@@ -29,9 +29,13 @@ class YoYoAlertView: UIView {
     let sureBtn = UIButton() //确定按钮
     let tap = UITapGestureRecognizer() //点击手势
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(title: String?, message: String?, cancelButtonTitle: String?, sureButtonTitle: String?) {
+        super.init(frame: CGRect(x: 0, y: 0, width: screen_width, height: screen_height))
         createAlertView()
+        self.titleLabel.text = title
+        self.contentLabel.text = message
+        self.cancelBtn.setTitle(cancelButtonTitle, forState: .Normal)
+        self.sureBtn.setTitle(sureButtonTitle, forState: .Normal)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -105,11 +109,7 @@ class YoYoAlertView: UIView {
         }
     }
     /** 指定视图实现方法 */
-    func showAlert(title: String?, message: String?, cancelButtonTitle: String?, sureButtonTitle: String?) {
-        self.titleLabel.text = title
-        self.contentLabel.text = message
-        self.cancelBtn.setTitle(cancelButtonTitle, forState: .Normal)
-        self.sureBtn.setTitle(sureButtonTitle, forState: .Normal)
+    func show() {
         let wind = UIApplication.sharedApplication().keyWindow
         self.alpha = 0
         wind?.addSubview(self)
